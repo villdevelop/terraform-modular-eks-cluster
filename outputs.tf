@@ -1,22 +1,29 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
-output "cluster_endpoint" {
-  description = "Endpoint for EKS control plane"
-  value       = module.eks.cluster_endpoint
+output "vpc_id" {
+  description = "The ID of the VPC"
+  value       = module.vpc.vpc_id
 }
 
-output "cluster_security_group_id" {
-  description = "Security group ids attached to the cluster control plane"
-  value       = module.eks.cluster_security_group_id
+output "private_subnets" {
+  description = "The IDs of the private subnets"
+  value       = module.vpc.private_subnets
 }
 
-output "region" {
-  description = "AWS region"
-  value       = var.region
+output "public_subnets" {
+  description = "The IDs of the public subnets"
+  value       = module.vpc.public_subnets
 }
 
-output "cluster_name" {
-  description = "Kubernetes Cluster Name"
+output "eks_cluster_name" {
+  description = "The name of the EKS cluster"
   value       = module.eks.cluster_name
+}
+
+output "eks_oidc_provider" {
+  description = "The OIDC provider URL for the EKS cluster"
+  value       = module.eks.oidc_provider
+}
+
+output "irsa_ebs_csi_role_arn" {
+  description = "The IAM Role ARN for the EBS CSI driver"
+  value       = module.iam.irsa_ebs_csi_role_arn
 }
